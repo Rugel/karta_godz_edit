@@ -28,12 +28,12 @@ margin-left:auto;
 margin-right:auto;
 font-weight:600;
 }
-.f1,.nag{
+.f1,.nag, #prac, #stan{
 text-align:center;
 font-weight:600;
 
 }    
-input, #druk{
+input, #druk, #zap{
 font-weight:600;
 outline:none;
 border-radius: 8px;
@@ -42,6 +42,10 @@ background-color:lightgrey;
 text-align:center;
 padding:5px;
 } 
+
+#zap{
+    height:2em;
+}
 
 .input{
 width:70px;
