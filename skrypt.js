@@ -1,3 +1,5 @@
+const { isTypedArray } = require("util/types");
+
 function gen()
 {
 
@@ -121,11 +123,25 @@ const stanowisko=document.getElementById('stanowisko').value;
 document.getElementById('but').innerHTML='<button id="druk" onclick=window.print()>🖨️ Drukuj</button>'
 document.getElementById('prac').innerHTML=`PRACOWNIK: ${pracownik}`;
 document.getElementById('stan').innerHTML=`STANOWISKO: ${stanowisko}`;
+
+//funkcja zamieniająca godzinę w formacie --:-- na liczbę;
+const change=function(x){
+    const timeok=(x.substring(0,2)+'.'+Math.round(x.substring(3)/60*100))*1;
+    return timeok;}
+
 let k;
+let t1;
+let t2;
+let result;
 for(k=1; k<=l; k++){
-   // document.getElementById(`s${k}`).innerHTML=document.getElementById(`do${k}`).value-document.getElementById(`od${k}`).value;
+    let odvalue=document.getElementById(`od${k}`).value;
+    let dovalue=document.getElementById(`do${k}`).value;
+    t1=change(odvalue);
+    t2=change(dovalue);
+    if(t2<=t1){t2=t2+24};
+    result=t2-t1;
+   document.getElementById(`s${k}`).innerHTML=result;
     document.getElementById(`tdod${k}`).innerHTML=document.getElementById(`od${k}`).value;
-    document.getElementById(`tddo${k}`).innerHTML=document.getElementById(`do${k}`).value;
-    
-}
-  }
+    document.getElementById(`tddo${k}`).innerHTML=document.getElementById(`do${k}`).value;  
+                 }
+                                }
