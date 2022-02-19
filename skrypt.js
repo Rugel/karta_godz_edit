@@ -74,7 +74,7 @@ switch(miesiac){
 
 
 document .getElementById ("wybor").innerHTML ="";
-document.getElementById("nag").innerHTML+="<p class='f1'>"+rok+"    "+miesiac+"</p>"+"<p id='but'><button id='zap' onclick=zapisz()>👌 Zapisz</></p>";
+document.getElementById("nag").innerHTML+="<p class='f1'>"+rok+"    "+miesiac+"</p>"+"<p id='but'><button id='zap' onclick=zapisz()>📝 Zapisz</></p>";
 if(miesiac=="luty"&&rok%400==0){
     l=29
 }
@@ -100,20 +100,20 @@ else if(miesiac=="luty"&&rok%4!=0){
 for(i=1; i<=l; i++){
  
        if(i==niedziela||i==niedziela+7||i==niedziela+14||i==niedziela+21||i==niedziela+28||i==niedziela+35||i==1&&(miesiac=="styczeń"||miesiac=="maj"||miesiac=="listopad")||i==6&&miesiac=="styczeń"||i==3&&miesiac=="maj"||i==15&&miesiac=="sierpień"||i==11&&miesiac=="listopad"||i==25&&miesiac=="grudzień"||i==26&&miesiac=="grudzień") {
-        document.getElementById("tabela").innerHTML +="<tr class='suncolor'><td >"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value='07:00'/></td><td id=tddo${i}><input id=do${i} type='time' value='15:00'/></td><td id=s${i}></td><td > </td><td > </td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr class='suncolor'><td >"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time'/></td><td id=tddo${i}><input id=do${i} type='time'/></td><td id=s${i}></td><td > </td><td > </td></tr>`
     }    
     
        
   else if(i==sobota||i==sobota+7||i==sobota+14||i==sobota+21||i==sobota+28){
-        document.getElementById("tabela").innerHTML +="<tr class='satcolor'><td style='width:5%'>"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value='07:00'/></td><td id=tddo${i}><input id=do${i} type='time' value='15:00'/></td><td id=s${i}></td><td > </td><td > </td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr class='satcolor'><td style='width:5%'>"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time'/></td><td id=tddo${i}><input id=do${i} type='time'/></td><td id=s${i}></td><td > </td><td > </td></tr>`
     }                                                                                                    
     
     else{
-        document.getElementById("tabela").innerHTML +="<tr><td>"+i+"."+"</td><td>"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type="time" value='07:00'/></td><td id=tddo${i}><input id=do${i} type="time" value='15:00'/></td><td id=s${i}></td><td > </td><td > </td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr><td>"+i+"."+"</td><td>"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type="time"/></td><td id=tddo${i}><input id=do${i} type="time"/></td><td id=s${i}></td><td > </td><td > </td></tr>`
         }
     
      }
-     document.getElementById("tabela").innerHTML +="<tr><td class='noborder'></td><td class='noborder'></td><td class='noborder'></td><td class='noborder'>"+"RAZEM"+"</td><td ></td><td class='noborder'></td><td class='noborder'></td></tr>"
+     document.getElementById("tabela").innerHTML +="<tr><td class='noborder'></td><td class='noborder'></td><td class='noborder'></td><td class='noborder'>"+"RAZEM"+"</td><td id=suma ></td><td class='noborder'></td><td class='noborder'></td></tr>"
   }   
 
   
@@ -124,24 +124,38 @@ document.getElementById('but').innerHTML='<button id="druk" onclick=window.print
 document.getElementById('prac').innerHTML=`PRACOWNIK: ${pracownik}`;
 document.getElementById('stan').innerHTML=`STANOWISKO: ${stanowisko}`;
 
-//funkcja zamieniająca godzinę w formacie --:-- na liczbę;
+//funkcja zamieniająca godzinę w formacie --:-- na liczbę
 const change=function(x){
-    const timeok=(x.substring(0,2)+'.'+Math.round(x.substring(3)/60*100))*1;
-    return timeok;}
+    const sign1=x.charAt(0);
+    const sign2=x.charAt(1);
+    const sign3=x.charAt(3);
+    const sign4=x.charAt(4);
+let num=Math.round(parseFloat(sign3+sign4)/60*100);
+num=String(num);
+if(num<10){num='0'+num};
+const ctime=parseFloat(sign1+sign2+'.'+num);
+return ctime;
+}
 
+//pętla zapisująca wprowadzone dane oraz wyliczająca liczę godzin z różnicy i ich sumowanie
 let k;
 let t1;
 let t2;
 let result;
+let sum=0;
 for(k=1; k<=l; k++){
     let odvalue=document.getElementById(`od${k}`).value;
     let dovalue=document.getElementById(`do${k}`).value;
     t1=change(odvalue);
     t2=change(dovalue);
     if(t2<=t1){t2=t2+24};
-    result=t2-t1;
-   document.getElementById(`s${k}`).innerHTML=result;
+    if(isNaN(t1)||isNaN(t2)){t1=0; t2=0};
+        result=Math.round((t2-t1)*100)/100;
+        sum=sum+result;
+    document.getElementById(`s${k}`).innerHTML=result;
     document.getElementById(`tdod${k}`).innerHTML=document.getElementById(`od${k}`).value;
-    document.getElementById(`tddo${k}`).innerHTML=document.getElementById(`do${k}`).value;  
-                 }
+    document.getElementById(`tddo${k}`).innerHTML=document.getElementById(`do${k}`).value;
+     }
+     // zapis sumy godzin do komórki tabeli
+     document.getElementById('suma').innerHTML=sum;
                                 }
