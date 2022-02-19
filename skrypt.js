@@ -1,4 +1,4 @@
-const { isTypedArray } = require("util/types");
+//const { isTypedArray } = require("util/types");
 
 function gen()
 {
@@ -74,7 +74,7 @@ switch(miesiac){
 
 
 document .getElementById ("wybor").innerHTML ="";
-document.getElementById("nag").innerHTML+="<p class='f1'>"+rok+"    "+miesiac+"</p>"+"<p id='but'><button id='zap' onclick=zapisz()>📝 Zapisz</></p>";
+document.getElementById("nag").innerHTML+="<p class='f1'>"+rok+"    "+miesiac+"</p>"+"</br>"+"<p id='but'><button id='zap' onclick=zapisz()>📝 Zapisz</></p>";
 if(miesiac=="luty"&&rok%400==0){
     l=29
 }
@@ -100,16 +100,16 @@ else if(miesiac=="luty"&&rok%4!=0){
 for(i=1; i<=l; i++){
  
        if(i==niedziela||i==niedziela+7||i==niedziela+14||i==niedziela+21||i==niedziela+28||i==niedziela+35||i==1&&(miesiac=="styczeń"||miesiac=="maj"||miesiac=="listopad")||i==6&&miesiac=="styczeń"||i==3&&miesiac=="maj"||i==15&&miesiac=="sierpień"||i==11&&miesiac=="listopad"||i==25&&miesiac=="grudzień"||i==26&&miesiac=="grudzień") {
-        document.getElementById("tabela").innerHTML +="<tr class='suncolor'><td >"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time'/></td><td id=tddo${i}><input id=do${i} type='time'/></td><td id=s${i}></td><td > </td><td > </td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr class='suncolor'><td >"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time'/></td><td id=tddo${i}><input id=do${i} type='time'/></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
     }    
     
        
   else if(i==sobota||i==sobota+7||i==sobota+14||i==sobota+21||i==sobota+28){
-        document.getElementById("tabela").innerHTML +="<tr class='satcolor'><td style='width:5%'>"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time'/></td><td id=tddo${i}><input id=do${i} type='time'/></td><td id=s${i}></td><td > </td><td > </td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr class='satcolor'><td style='width:5%'>"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time'/></td><td id=tddo${i}><input id=do${i} type='time'/></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
     }                                                                                                    
     
     else{
-        document.getElementById("tabela").innerHTML +="<tr><td>"+i+"."+"</td><td>"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type="time"/></td><td id=tddo${i}><input id=do${i} type="time"/></td><td id=s${i}></td><td > </td><td > </td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr><td>"+i+"."+"</td><td>"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type="time"/></td><td id=tddo${i}><input id=do${i} type="time"/></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
         }
     
      }
@@ -121,8 +121,8 @@ for(i=1; i<=l; i++){
 const pracownik=document.getElementById('pracownik').value;
 const stanowisko=document.getElementById('stanowisko').value;
 document.getElementById('but').innerHTML='<button id="druk" onclick=window.print()>🖨️ Drukuj</button>'
-document.getElementById('prac').innerHTML=`PRACOWNIK: ${pracownik}`;
-document.getElementById('stan').innerHTML=`STANOWISKO: ${stanowisko}`;
+document.getElementById('prac').innerHTML=`PRACOWNIK: <span id='empl'>${pracownik}</span>`;
+document.getElementById('stan').innerHTML=`STANOWISKO: <span id='jobpos'>${stanowisko}</span>`;
 
 //funkcja zamieniająca godzinę w formacie --:-- na liczbę
 const change=function(x){
@@ -152,10 +152,12 @@ for(k=1; k<=l; k++){
     if(isNaN(t1)||isNaN(t2)){t1=0; t2=0};
         result=Math.round((t2-t1)*100)/100;
         sum=sum+result;
-    document.getElementById(`s${k}`).innerHTML=result;
+    const res=document.getElementById(`s${k}`);
+    if(result){res.innerHTML=result}else{res.innerHTML=''};
     document.getElementById(`tdod${k}`).innerHTML=document.getElementById(`od${k}`).value;
     document.getElementById(`tddo${k}`).innerHTML=document.getElementById(`do${k}`).value;
+    document.getElementById(`tduw${k}`).innerHTML=document.getElementById(`uw${k}`).value.toUpperCase();
      }
      // zapis sumy godzin do komórki tabeli
-     document.getElementById('suma').innerHTML=sum;
+     document.getElementById('suma').innerHTML=Math.round(sum*100)/100;
                                 }
