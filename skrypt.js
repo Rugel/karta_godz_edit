@@ -2,32 +2,23 @@
 
 function gen()
 {
-
-
-
-
-
-  
+    document.getElementById('prac').innerHTML+="<input id ='pracownik' type='text'/>";
+    document.getElementById('stan').innerHTML+="<input id='stanowisko' type='text'/>";
 const text=document.getElementById("edit").value; 
-
 const year=text.slice(0,4)*1;
-
 const month=text.slice(5,7)*1;
-
 const data = new Date();
 let rok=data.getFullYear();
 const m=month+((year-rok)*12);
 rok=year;
-
 let miesiac = (data.setMonth(m-1));
 const dzen=data.setDate(1);
-
- miesiac=data.getMonth();
- let nummie=miesiac+1;
+miesiac=data.getMonth();
+let nummie=miesiac+1;
  if(nummie<10){
      nummie='0'+nummie;
  }
-const day=data.getDay();
+ const day=data.getDay();
  const sobota=7-day;
  const niedziela=1-day;
 
@@ -98,18 +89,19 @@ else if(miesiac=="luty"&&rok%4!=0){
  }
 
 for(i=1; i<=l; i++){
- 
+
+ //let locod=localStorage.getItem(`sod${i}`);
        if(i==niedziela||i==niedziela+7||i==niedziela+14||i==niedziela+21||i==niedziela+28||i==niedziela+35||i==1&&(miesiac=="styczeń"||miesiac=="maj"||miesiac=="listopad")||i==6&&miesiac=="styczeń"||i==3&&miesiac=="maj"||i==15&&miesiac=="sierpień"||i==11&&miesiac=="listopad"||i==25&&miesiac=="grudzień"||i==26&&miesiac=="grudzień") {
-        document.getElementById("tabela").innerHTML +="<tr class='suncolor'><td >"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time'/></td><td id=tddo${i}><input id=do${i} type='time'/></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr class='suncolor'><td >"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)} /></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)} /></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
     }    
     
        
   else if(i==sobota||i==sobota+7||i==sobota+14||i==sobota+21||i==sobota+28){
-        document.getElementById("tabela").innerHTML +="<tr class='satcolor'><td style='width:5%'>"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time'/></td><td id=tddo${i}><input id=do${i} type='time'/></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr class='satcolor'><td style='width:5%'>"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)} /></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)} /></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
     }                                                                                                    
     
     else{
-        document.getElementById("tabela").innerHTML +="<tr><td>"+i+"."+"</td><td>"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type="time"/></td><td id=tddo${i}><input id=do${i} type="time"/></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
+        document.getElementById("tabela").innerHTML +=`<tr><td>${i}.</td><td>${i}.${nummie}.${rok}</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)} /></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)} /></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
         }
     
      }
@@ -154,10 +146,15 @@ for(k=1; k<=l; k++){
         sum=sum+result;
     const res=document.getElementById(`s${k}`);
     if(result){res.innerHTML=result}else{res.innerHTML=''};
-    document.getElementById(`tdod${k}`).innerHTML=document.getElementById(`od${k}`).value;
-    document.getElementById(`tddo${k}`).innerHTML=document.getElementById(`do${k}`).value;
+    document.getElementById(`tdod${k}`).innerHTML=odvalue;
+    document.getElementById(`tddo${k}`).innerHTML=dovalue;
     document.getElementById(`tduw${k}`).innerHTML=document.getElementById(`uw${k}`).value.toUpperCase();
+
+    //zapis do Storage
+   localStorage.setItem(`sod${k}`, odvalue);
+   localStorage.setItem(`sdo${k}`, dovalue);
+
      }
-     // zapis sumy godzin do komórki tabeli
+// zapis sumy godzin do komórki tabeli
      document.getElementById('suma').innerHTML=Math.round(sum*100)/100;
                                 }
