@@ -1,7 +1,8 @@
-//const { isTypedArray } = require("util/types");
+//const { isTypedArray } = require("util/types"
+
 
 function gen()
-{
+{   document.getElementById('pbu').innerHTML=document.getElementById('ibu').value;
     document.getElementById('prac').innerHTML+="<input id ='pracownik' type='text'/>";
     document.getElementById('stan').innerHTML+="<input id='stanowisko' type='text'/>";
 const text=document.getElementById("edit").value; 
@@ -66,6 +67,7 @@ switch(miesiac){
 
 document .getElementById ("wybor").innerHTML ="";
 document.getElementById("nag").innerHTML+="<p class='f1'>"+rok+"    "+miesiac+"</p>"+"</br>"+"<p id='but'><button id='zap' onclick=zapisz()>📝 Zapisz</></p>";
+document.getElementById('nag').innerHTML+="<input id='cleaner' type='button' value='🚮 Oczyść' onclick='clean()'></input>";
 if(miesiac=="luty"&&rok%400==0){
     l=29
 }
@@ -158,4 +160,12 @@ for(k=1; k<=l; k++){
      }
 // zapis sumy godzin do komórki tabeli
      document.getElementById('suma').innerHTML=Math.round(sum*100)/100;
-                                }
+    }
+    
+    
+    function clean(){
+    if(confirm("Czy napewno chcesz usunąć zapamiętane dane dla formularza?")){localStorage.clear();
+    for(j=1; j<=l; j++){
+        localStorage.setItem(`suw${j}`, '');
+    }}
+                    };

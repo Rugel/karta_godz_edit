@@ -102,9 +102,11 @@ margin-right:8%;
     font-size:1em;
     border-radius:6px;
 }
-
+#cleaner{
+    margin-left:50%;
+}
 @media print{
-#druk{
+#druk, #cleaner{
 display:none;  
 }
 * {
