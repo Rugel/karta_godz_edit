@@ -90,18 +90,18 @@ else if(miesiac=="luty"&&rok%4!=0){
 
 for(i=1; i<=l; i++){
 
- //let locod=localStorage.getItem(`sod${i}`);
+ //let locod=localStorage.getItem(`sod${i}`)
        if(i==niedziela||i==niedziela+7||i==niedziela+14||i==niedziela+21||i==niedziela+28||i==niedziela+35||i==1&&(miesiac=="styczeń"||miesiac=="maj"||miesiac=="listopad")||i==6&&miesiac=="styczeń"||i==3&&miesiac=="maj"||i==15&&miesiac=="sierpień"||i==11&&miesiac=="listopad"||i==25&&miesiac=="grudzień"||i==26&&miesiac=="grudzień") {
-        document.getElementById("tabela").innerHTML +="<tr class='suncolor'><td >"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)} /></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)} /></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr class='suncolor'><td >"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)}></input></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)}></input></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text' value=${localStorage.getItem(`suw${i}`)}></input></td></tr>`
     }    
     
        
   else if(i==sobota||i==sobota+7||i==sobota+14||i==sobota+21||i==sobota+28){
-        document.getElementById("tabela").innerHTML +="<tr class='satcolor'><td style='width:5%'>"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)} /></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)} /></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr class='satcolor'><td style='width:5%'>"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)}></input></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)}></input></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text' value=${localStorage.getItem(`suw${i}`)}></input></td></tr>`
     }                                                                                                    
     
     else{
-        document.getElementById("tabela").innerHTML +=`<tr><td>${i}.</td><td>${i}.${nummie}.${rok}</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)} /></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)} /></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text'/></td></tr>`
+        document.getElementById("tabela").innerHTML +=`<tr><td>${i}.</td><td>${i}.${nummie}.${rok}</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)}></input></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)}></input></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text' value=${localStorage.getItem(`suw${i}`)}></input></td></tr>`
         }
     
      }
@@ -138,6 +138,7 @@ let sum=0;
 for(k=1; k<=l; k++){
     let odvalue=document.getElementById(`od${k}`).value;
     let dovalue=document.getElementById(`do${k}`).value;
+    const uwvalue=document.getElementById(`uw${k}`).value;
     t1=change(odvalue);
     t2=change(dovalue);
     if(t2<=t1){t2=t2+24};
@@ -153,7 +154,7 @@ for(k=1; k<=l; k++){
     //zapis do Storage
    localStorage.setItem(`sod${k}`, odvalue);
    localStorage.setItem(`sdo${k}`, dovalue);
-
+   localStorage.setItem(`suw${k}`, uwvalue);
      }
 // zapis sumy godzin do komórki tabeli
      document.getElementById('suma').innerHTML=Math.round(sum*100)/100;
