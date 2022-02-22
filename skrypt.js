@@ -1,7 +1,3 @@
-//const { isTypedArray } = require("util/types"
-
-const { title } = require("process");
-
 
 function gen()
 {   document.getElementById('pbu').innerHTML=document.getElementById('ibu').value;
@@ -168,5 +164,7 @@ for(k=1; k<=l; k++){
     if(confirm("Czy napewno chcesz usunąć zapamiętane dane dla formularza?")){localStorage.clear();
     for(j=1; j<=l; j++){
         localStorage.setItem(`suw${j}`, '');
+        localStorage.setItem(`sod${j}`, '');
+        localStorage.setItem(`sdo${j}`, '');
     }}
                     };
