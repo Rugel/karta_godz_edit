@@ -113,7 +113,7 @@ const stanowisko=document.getElementById('stanowisko').value;
 document.getElementById('but').innerHTML='<button id="druk" onclick=window.print()>🖨️ Drukuj</button>'
 document.getElementById('prac').innerHTML=`PRACOWNIK: <span id='empl'>${pracownik}</span>`;
 document.getElementById('stan').innerHTML=`STANOWISKO: <span id='jobpos'>${stanowisko}</span>`;
-document.title=`${pracownik}-godziny`;
+document.title=`${pracownik} (godz_prcy)`;
 
 //funkcja zamieniająca godzinę w formacie --:-- na liczbę
 const change=function(x){
@@ -161,7 +161,7 @@ for(k=1; k<=l; k++){
     
     
     function clean(){
-    if(confirm("Czy napewno chcesz usunąć zapamiętane dane dla formularza?")){localStorage.clear();
+    if(confirm("Czy na pewno chcesz usunąć zapamiętane DANE dla formularza?")){localStorage.clear();
     for(j=1; j<=l; j++){
         localStorage.setItem(`suw${j}`, '');
         localStorage.setItem(`sod${j}`, '');
