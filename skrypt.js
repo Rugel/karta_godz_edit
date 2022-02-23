@@ -1,3 +1,7 @@
+const data =new Date();
+let rok=data.getFullYear();
+const miesiac=data.getMonth();
+document.getElementById('edit').value=rok+'-'+(miesiac+1<10?'0'+(miesiac+1):miesiac+1);
 
 function gen()
 {   document.getElementById('pbu').innerHTML=document.getElementById('ibu').value;
@@ -6,8 +10,6 @@ function gen()
 const text=document.getElementById("edit").value; 
 const year=text.slice(0,4)*1;
 const month=text.slice(5,7)*1;
-const data = new Date();
-let rok=data.getFullYear();
 const m=month+((year-rok)*12);
 rok=year;
 let miesiac = (data.setMonth(m-1));
