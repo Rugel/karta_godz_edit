@@ -113,7 +113,7 @@ const stanowisko=document.getElementById('stanowisko').value;
 document.getElementById('but').innerHTML='<button id="druk" onclick=window.print()>🖨️ Drukuj</button>'
 document.getElementById('prac').innerHTML=`PRACOWNIK: <span id='empl'>${pracownik}</span>`;
 document.getElementById('stan').innerHTML=`STANOWISKO: <span id='jobpos'>${stanowisko}</span>`;
-document.title=`${pracownik} (godz_prcy)`;
+document.title=`${pracownik} (godz_pracy)`;
 
 //funkcja zamieniająca godzinę w formacie --:-- na liczbę
 const change=function(x){
