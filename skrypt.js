@@ -92,16 +92,16 @@ else if(miesiac=="luty"&&rok%4!=0){
 
 for(i=1; i<=l; i++){
        if(i==niedziela||i==niedziela+7||i==niedziela+14||i==niedziela+21||i==niedziela+28||i==niedziela+35||i==1&&(miesiac=="styczeń"||miesiac=="maj"||miesiac=="listopad")||i==6&&miesiac=="styczeń"||i==3&&miesiac=="maj"||i==15&&miesiac=="sierpień"||i==11&&miesiac=="listopad"||i==25&&miesiac=="grudzień"||i==26&&miesiac=="grudzień") {
-        document.getElementById("tabela").innerHTML +="<tr class='suncolor'><td >"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)}></input></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)}></input></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text' value=${localStorage.getItem(`suw${i}`)}></input></td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr class='suncolor'><td >"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)===null?'':localStorage.getItem(`sod${i}`)}></input></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)===null?'':localStorage.getItem(`sdo${i}`)}></input></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text' value=${localStorage.getItem(`suw${i}`)===null?'':localStorage.getItem(`suw${i}`)}></input></td></tr>`
     }    
     
        
   else if(i==sobota||i==sobota+7||i==sobota+14||i==sobota+21||i==sobota+28){
-        document.getElementById("tabela").innerHTML +="<tr class='satcolor'><td style='width:5%'>"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)}></input></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)}></input></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text' value=${localStorage.getItem(`suw${i}`)}></input></td></tr>`
+        document.getElementById("tabela").innerHTML +="<tr class='satcolor'><td style='width:5%'>"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)===null?'':localStorage.getItem(`sod${i}`)}></input></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)===null?'':localStorage.getItem(`sdo${i}`)}></input></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text' value=${localStorage.getItem(`suw${i}`)===null?'':localStorage.getItem(`suw${i}`)}></input></td></tr>`
     }                                                                                                    
     
     else{
-        document.getElementById("tabela").innerHTML +=`<tr><td>${i}.</td><td>${i}.${nummie}.${rok}</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)}></input></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)}></input></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text' value=${localStorage.getItem(`suw${i}`)}></input></td></tr>`
+        document.getElementById("tabela").innerHTML +=`<tr><td>${i}.</td><td>${i}.${nummie}.${rok}</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)===null?'':localStorage.getItem(`sod${i}`)}></input></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)===null?'':localStorage.getItem(`sdo${i}`)}></input></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' id=uw${i} type='text' value=${localStorage.getItem(`suw${i}`)===null?'':localStorage.getItem(`suw${i}`)}></input></td></tr>`
         }
     
      }
