@@ -2,6 +2,8 @@ const data =new Date();
 let rok=data.getFullYear();
 const miesiac=data.getMonth();
 document.getElementById('edit').value=rok+'-'+(miesiac+1<10?'0'+(miesiac+1):miesiac+1);
+const bu = localStorage.getItem('st_build');
+bu?document.getElementById('ibu').value=bu:null;
 
 function gen()
 {   document.getElementById('pbu').innerHTML=document.getElementById('ibu').value;
@@ -130,6 +132,7 @@ const ctime=parseFloat(sign1+sign2+'.'+num);
 return ctime;
 }
 
+const build = document.getElementById('pbu').textContent;
 //pętla zapisująca wprowadzone dane oraz wyliczająca liczę godzin z różnicy i ich sumowanie
 let k;
 let t1;
@@ -157,6 +160,7 @@ for(k=1; k<=l; k++){
    localStorage.setItem(`sdo${k}`, dovalue);
    localStorage.setItem(`suw${k}`, uwvalue);
      }
+   localStorage.setItem('st_build', build)
 // zapis sumy godzin do komórki tabeli
      document.getElementById('suma').innerHTML=Math.round(sum*100)/100;
     }
@@ -168,5 +172,7 @@ for(k=1; k<=l; k++){
         localStorage.setItem(`suw${j}`, '');
         localStorage.setItem(`sod${j}`, '');
         localStorage.setItem(`sdo${j}`, '');
-    }}
+    }
+        localStorage.setItem('st_build', '');
+}
                     };
