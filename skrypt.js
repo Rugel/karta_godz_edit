@@ -7,8 +7,11 @@ bu?document.getElementById('ibu').value=bu:null;
 
 function gen()
 {   document.getElementById('pbu').innerHTML=document.getElementById('ibu').value;
-    document.getElementById('prac').innerHTML+="<input id ='pracownik' type='text'/>";
-    document.getElementById('stan').innerHTML+="<input id='stanowisko' type='text'/>";
+
+    document.getElementById('prac').innerHTML+='<input id ="employee" list="workers"/><datalist id="workers"><option value="Bujak Dariusz"/><option value="Dychała Grzegorz"/><option value="Frąk Jakub"/><option value="Gryz Marcin"/><option value="Janus Marek"/><option value="Jęczara Marcin"/><option value="Latała Zbigniew"/><option value="Łebek Bogusław"/><option value="Mazurczak Grzegorz"/><option value="Pokój Mariusz"/><option value="Sowa Marek"/></datalist>';
+
+    document.getElementById('stan').innerHTML+='<input id="engagement" list="engagements"/><datalist id="engagements"><option value="operator układarki"/><option value="operator walca"/><option value="pomocnik"/><option value="operator stołu"/><option value="operator sprzętu"/><option value="opertaor"/><option value="koszowy"/><option value="robotnik drogowy"/><option value="brygadzista"/><option value="majster"/><datalist/>';
+
 const text=document.getElementById("edit").value; 
 const year=text.slice(0,4)*1;
 const month=text.slice(5,7)*1;
@@ -112,8 +115,8 @@ for(i=1; i<=l; i++){
 
   
   function zapisz(){
-const pracownik=document.getElementById('pracownik').value;
-const stanowisko=document.getElementById('stanowisko').value;
+const pracownik=document.getElementById('employee').value;
+const stanowisko=document.getElementById('engagement').value;
 document.getElementById('but').innerHTML='<button id="druk" onclick=window.print()>🖨️ Drukuj</button>'
 document.getElementById('prac').innerHTML=`PRACOWNIK: <span id='empl'>${pracownik}</span>`;
 document.getElementById('stan').innerHTML=`STANOWISKO: <span id='jobpos'>${stanowisko}</span>`;
@@ -174,5 +177,6 @@ for(k=1; k<=l; k++){
         localStorage.setItem(`sdo${j}`, '');
     }
         localStorage.setItem('st_build', '');
+        alert('USUNIĘTO ZAPAMIĘTANE DANE !!!');
 }
                     };
