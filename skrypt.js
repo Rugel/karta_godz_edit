@@ -1,10 +1,11 @@
+'use strict';
 const data =new Date();
 let rok=data.getFullYear();
 const miesiac=data.getMonth();
 document.getElementById('edit').value=rok+'-'+(miesiac+1<10?'0'+(miesiac+1):miesiac+1);
 const bu = localStorage.getItem('st_build');
 bu?document.getElementById('ibu').value=bu:null;
-
+let l;
 function gen()
 {   document.getElementById('pbu').innerHTML=document.getElementById('ibu').value;
 
@@ -69,7 +70,6 @@ switch(miesiac){
  
  
 
-
 document .getElementById ("wybor").innerHTML ="";
 document.getElementById("nag").innerHTML+="<p class='f1'>"+rok+"    "+miesiac+"</p>"+"</br>"+"<p id='but'><button id='zap' onclick=zapisz()>📝 Zapisz</></p>";
 document.getElementById('nag').innerHTML+="<input id='cleaner' type='button' value='🚮 Oczyść' onclick='clean()'></input>";
@@ -95,7 +95,7 @@ else if(miesiac=="luty"&&rok%4!=0){
      l=30
  }
 
-for(i=1; i<=l; i++){
+for(let i=1; i<=l; i++){
        if(i==niedziela||i==niedziela+7||i==niedziela+14||i==niedziela+21||i==niedziela+28||i==niedziela+35||i==1&&(miesiac=="styczeń"||miesiac=="maj"||miesiac=="listopad")||i==6&&miesiac=="styczeń"||i==3&&miesiac=="maj"||i==15&&miesiac=="sierpień"||i==11&&miesiac=="listopad"||i==25&&miesiac=="grudzień"||i==26&&miesiac=="grudzień") {
         document.getElementById("tabela").innerHTML +="<tr class='suncolor'><td >"+i+"."+"</td><td >"+i+"."+nummie+"."+rok+`</td><td id=tdod${i}><input id=od${i} type='time' value=${localStorage.getItem(`sod${i}`)===null?'':localStorage.getItem(`sod${i}`)}></input></td><td id=tddo${i}><input id=do${i} type='time' value=${localStorage.getItem(`sdo${i}`)===null?'':localStorage.getItem(`sdo${i}`)}></input></td><td id=s${i}></td><td > </td><td id=tduw${i}><input class='uwagi' list='uwagi_nie' id=uw${i} type='text' value=${localStorage.getItem(`suw${i}`)===null?'':localStorage.getItem(`suw${i}`)}></input><datalist id='uwagi_nie'><option value='Ch(L4)'><option value='Uojc'><option value='Op'></datalist></td></tr>`
     }    
