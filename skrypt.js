@@ -5,7 +5,7 @@ const miesiac = data.getMonth();
 document.getElementById('edit').value = rok + '-' + (miesiac + 1 < 10 ? '0' + (miesiac + 1) : miesiac + 1);
 const bu = localStorage.getItem('st_build');
 bu ? document.getElementById('ibu').value = bu : null;
-const aktu = () => document.getElementById('sum_div').innerHTML = `suma: <b>${count()}</b> h`;
+const aktu = () => document.getElementById('sum_div').innerHTML = `<b>${count()}</b> <span style='color:black'>godz.</span>`;
 let l;
 function gen() {
     document.getElementById('pbu').innerHTML = document.getElementById('ibu').value;

@@ -130,8 +130,9 @@ p {
 #sum_div {
     font-size: 2em;
     position: fixed;
-    margin-top: 20vh;
-    margin-left: 80vw;
+    top: 30px;
+    left: 80vw;
+    color: red;
 }
 
 @media print {
