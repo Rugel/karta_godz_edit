@@ -127,10 +127,18 @@ p {
     margin-left: 50%;
 }
 
+#sum_div {
+    font-size: 2em;
+    position: fixed;
+    margin-top: 20vh;
+    margin-left: 80vw;
+}
+
 @media print {
 
     #druk,
-    #cleaner {
+    #cleaner,
+    #sum_div {
         display: none;
     }
 
